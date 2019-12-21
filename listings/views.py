@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from django.core.paginator import EmptyPage,Paginator,PageNotAnInteger
+from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from .models import Listing
-# Create your views here.
+from django.shortcuts import get_object_or_404# Create your views here.
 
 
 def index(request):
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)
     # creat paginator
-    paginator= Paginator(listings,6)
-    page=request.GET.get('page')
-    paged_listings=paginator.get_page(page)
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
     context = {
         'listings': paged_listings
     }
@@ -17,7 +17,11 @@ def index(request):
 
 
 def listing(request, listing_id):
-    return render(request, 'listings/listing.html')
+    listing = get_object_or_404(Listing, pk=listing_id)
+    context = {
+        'listing': listing
+    }
+    return render(request, 'listings/listing.html', context)
 
 
 def search(request):
