@@ -1,6 +1,4 @@
-{% extends 'base.html' %} 
-{% load humanize%} 
-{% block content%}
+{% extends 'base.html' %} {% load humanize%} {% block content%}
 
 <section id="showcase-inner" class="py-5 text-white">
   <div class="container">
@@ -82,7 +80,7 @@
               </div>
             </div>
             <hr />
-            <a href="{% url 'listing' listing.idpython  %}" class="btn btn-primary btn-block"
+            <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block"
               >More Info</a
             >
           </div>
