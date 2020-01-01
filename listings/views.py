@@ -64,4 +64,6 @@ def search(request):
         'listings': queryset_list,
         'values': request.GET,
     }
+    print("hi",request.GET)
+
     return render(request, 'listings/search.html', context)
